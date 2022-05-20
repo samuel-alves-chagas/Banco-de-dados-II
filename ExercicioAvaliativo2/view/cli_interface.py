@@ -1,10 +1,7 @@
-from utils.utils import divider
 from pprintpp import pprint as pp
+from operator import itemgetter
 from model.personagemDAO import PersonagemDAO
-
-inputs = {
-    1: '1. Para verificar se dois personagens possuem algum tipo de relação\n'
-}
+from utils.utils import divider, optionStr
 
 
 def view(connection):
@@ -14,7 +11,7 @@ def view(connection):
     print('Olá, este é um sistema para consulta de informações dos personagens de Breaking Bad')
     print('Para interagir basta selecionar uma das opções de pesquisa e seguir os passos ;)\n')
     while 1:
-        option = input(inputs[1])
+        option = input(optionStr)
         divider()
         if option == '1':
             print(
@@ -25,25 +22,34 @@ def view(connection):
 
             personagem1 = input('\nPersonagem 1: ')
             personagem2 = input('Personagem 2: ')
-            # personagem1 = 'Mr. White'
-            # personagem2 = 'Skyler White'
             divider()
 
             results = dao.getRelationBetweenCharacters(
                 personagem1, personagem2)
             if len(results) > 0:
-                print('A(s) relação(ões) entre ', personagem1,
-                      ' e ', personagem2, ' são: \n', results)
+                print('A(s) relação(ões) entre', personagem1,
+                      'e', personagem2, 'são: \n', results)
+            else:
+                print('Os personagens', personagem1,
+                      'e', personagem2, 'não tem relação. Por favor, verifique se os nomes foram digitados correramente')
+
+            divider()
+
+        elif option == '2':
+            results = dao.peopleWhoHateThemself()
+            if len(results) > 0:
+                print('As pessoas que se odeiam são:')
+                for i in range(len(results)):
+                    keyName = list(results[i].keys())[0]
+                    valueName = list(results[i].values())[0]
+                    print(keyName, 'odeia', valueName)
+            else:
+                print('Nenhum dos personagens do banco se odeiam!')
 
             divider()
 
         else:
             break
-
-    # elif option == '2':
-    #     aux = dao.read_all_nodes()
-    #     pp(aux)
-    #     divider()
 
     # elif option == '3':
     #     name = input('  Name: ')

@@ -21,3 +21,11 @@ class PersonagemDAO(object):
         for record in results:
             data.append(record['r'].type)
         return data
+
+    def peopleWhoHateThemself(self):
+        results = self.db.execute_query(
+            'MATCH (c1)-[r:ODEIA]->(c2) RETURN c1.nome as nome1, c2.nome as nome2')
+        data = []
+        for record in results:
+            data.append({record['nome1']: record['nome2']})
+        return data
