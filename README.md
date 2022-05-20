@@ -1,7 +1,8 @@
-# Como executar?
+## Exercicio Avaliativo 2 - It's Family Time
 Este é um projeto acadêmico em que é possível consultar informações das relações entre os personagens de Breaking Bad através de um CLI.
 
-Para rodar a aplicação siga os passos:
+## Como executar?
+Siga os passos:
 
 1. Instale as dependências:
     ```sh
