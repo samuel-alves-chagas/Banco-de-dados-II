@@ -48,28 +48,25 @@ def view(connection):
 
             divider()
 
+        elif option == '3':
+            results = dao.goodCharacters()
+            if len(results) > 0:
+                print('Os personagens bonzinhos são:')
+                for name in results:
+                    pp(list(name)[0])
+
+            else:
+                print('Nenhum dos personagens do banco é bonzinho')
+
+            results = dao.evilCharacters()
+            if len(results) > 0:
+                print('\nOs personagens malvados são:')
+                for name in results:
+                    pp(list(name)[0])
+            else:
+                print('Nenhum dos personagens do banco é malvado')
+
+            divider()
+
         else:
             break
-
-    # elif option == '3':
-    #     name = input('  Name: ')
-    #     age = input('   Age: ')
-    #     person = {
-    #         'name': name,
-    #         'age': age
-    #     }
-
-    #     aux = dao.update_age(person)
-    #     divider()
-
-    # elif option == '4':
-    #     name = input('  Name: ')
-    #     person = {
-    #         'name': name
-    #     }
-
-    #     aux = dao.delete(person)
-    #     divider()
-
-    # else:
-    #     break

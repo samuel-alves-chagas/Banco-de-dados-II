@@ -29,3 +29,19 @@ class PersonagemDAO(object):
         for record in results:
             data.append({record['nome1']: record['nome2']})
         return data
+
+    def goodCharacters(self):
+        results = self.db.execute_query(
+            'MATCH (b:Bonzinho) RETURN b.nome as nome')
+        data = []
+        for record in results:
+            data.append({record['nome']})
+        return data
+
+    def evilCharacters(self):
+        results = self.db.execute_query(
+            'MATCH (m:Malvado) RETURN m.nome as nome')
+        data = []
+        for record in results:
+            data.append({record['nome']})
+        return data
